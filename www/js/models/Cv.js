@@ -4,4 +4,5 @@ angular.module('cvonlineapp').service('Cv',
     this.seeCv = function(callback, callbackError){}
     this.editCv = function(callback, callbackError){}
     this.changeCv = function(callback, callbackError){}
+    
 }]);
