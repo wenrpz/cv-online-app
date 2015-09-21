@@ -1,0 +1,21 @@
+<ion-view title="Mi Perfil">
+  <ion-nav-buttons side="right">
+    <button class="button button-light edit-profile" ng-click="doSomething()">Editar</button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <div class="profile-image text-center">
+      <img src="http://placehold.it/300x200">
+    </div>
+    <div class="list list-inset">
+      <div class="item">
+        <strong>Nombre: </strong> {{profile.name}}
+      </div>
+      <div class="item">
+        <strong>Email: </strong> {{profile.email}}
+      </div>
+    </div>
+
+    <button class="button button-assertive" ng-click="removeAccount()">Eliminar cuenta</button>
+
+  </ion-content>
+</ion-view>
