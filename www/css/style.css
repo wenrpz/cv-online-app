@@ -9,6 +9,9 @@
 .profile-image{
   margin-top: 25px;
 }
+.profile-image img{
+  width: 50%;
+}
 .delete-account{
   margin-top: -10px;
   margin-left: 102px;
