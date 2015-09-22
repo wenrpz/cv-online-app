@@ -6,16 +6,22 @@
     <div class="profile-image text-center">
       <img src="http://placehold.it/300x200">
     </div>
-    <div class="list list-inset">
+    <div class="list list-inset profile-info text-center">
       <div class="item">
         <strong>Nombre: </strong> {{profile.name}}
       </div>
       <div class="item">
         <strong>Email: </strong> {{profile.email}}
       </div>
+       <div class="item">
+        <strong>Telefono: </strong> {{profile.tel}}
+      </div>
+      <div class="item">
+        <strong>Celular:</strong> {{profile.cel}}
+      </div>
     </div>
 
-    <button class="button button-assertive" ng-click="removeAccount()">Eliminar cuenta</button>
+    <button class="button button-assertive delete-account" ng-click="removeAccount()">Eliminar cuenta</button>
 
   </ion-content>
 </ion-view>
