@@ -1,10 +1,9 @@
-angular.module('cvonlineapp').controller('LoginController',['$scope','$state','ngFB', function($scope, $state, ngFB){
+angular.module('cvonlineapp').controller('LoginController',['$scope','$state','$openFB', function($scope, $state, $openFB){
 
   $scope.login = function(){
-     ngFB.login({scope: 'email'}).then(
-        function (response) {
-            console.log(response);
-            if (response.status === 'connected') {
+     $openFB.login({scope: 'email'}).then(
+        function (token) {
+            if (token) {
                 console.log('Facebook login succeeded');
                 $state.go('app.cv');
             } else {
