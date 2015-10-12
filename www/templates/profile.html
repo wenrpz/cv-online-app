@@ -1,27 +1,30 @@
 <ion-view title="Mi Perfil">
   <ion-nav-buttons side="right">
-    <button class="button button-light edit-profile" ng-click="doSomething()">Editar</button>
+    <a class="button button-light edit-profile" ui-sref="app.editProfile">Editar</a>
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="profile-image text-center">
-      <img src="img/user-placeholder.png">
+      <!-- <img src="img/user-placeholder.png"> -->
+      <img src="http://graph.facebook.com/{{profile.facebook.id}}/picture?width=270&height=270"/>
     </div>
     <div class="list list-inset profile-info text-center">
       <div class="item">
-        <strong>Nombre: </strong> {{profile.name}}
+        <strong>Nombre: </strong> {{profile.name}} {{profile.lastname}}
       </div>
       <div class="item">
         <strong>Email: </strong> {{profile.email}}
       </div>
        <div class="item">
-        <strong>Telefono: </strong> {{profile.tel}}
+        <strong>Telefono: </strong> {{profile.telephone}}
       </div>
       <div class="item">
-        <strong>Celular:</strong> {{profile.cel}}
+        <strong>Website:</strong> {{profile.website}}
       </div>
     </div>
 
     <button class="button button-assertive delete-account" ng-click="removeAccount()">Eliminar cuenta</button>
+
+          <a href="#" class="button button-block button-positive " ng-click="logout()">Logout</a>
 
   </ion-content>
 </ion-view>
