@@ -1,6 +1,6 @@
 angular.module('cvonlineapp').controller('ProfileController',function($scope, $state, ngFB, User){
   $scope.profile = User.getProfile();
-
+  console.log($scope.profile);
   $scope.getPicture = function() {
     ngFB.api({
       path: '/me',
@@ -25,6 +25,7 @@ angular.module('cvonlineapp').controller('ProfileController',function($scope, $s
   $scope.removeAccount =function() {
     if (confirm('Desea eliminar la cuenta?')) {
       User.deleteUser(function() {
+        $state.go('login');
         console.log('User deleted');
       });
     }
@@ -32,7 +33,8 @@ angular.module('cvonlineapp').controller('ProfileController',function($scope, $s
 
   $scope.save = function() {
     User.update($scope.user, function(response) {
-      console.log(response);
+      User.setUserData($scope.profile);
+      console.log(response, $scope.profile);
     },function(error) {
       console.log(error);
     });

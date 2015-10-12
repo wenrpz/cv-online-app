@@ -49,6 +49,7 @@ angular.module('cvonlineapp').service('User',
     this.setData = function(data){
       this.setToken(data.session_id);
       $localStorage.setObject('userData', data.user_data)
+      $localStorage.set('fb_token', data.fb_token)
     }
 
     this.setToken = function(token){
@@ -64,6 +65,9 @@ angular.module('cvonlineapp').service('User',
     
     this.getProfile = function(){
       return $localStorage.getObject('userData');
+    }
+    this.setUserData = function(profileInfo){
+      $localStorage.setObject('userData', profileInfo);
     }
     
     this.logout = function(){
