@@ -18,3 +18,15 @@ angular.module('cvonlineapp', ['ionic', 'ngOpenFB'])
     }
   });
 })
+.config(function(){
+  if(window.localStorage['fb_token']){
+    window.sessionStorage.setItem('fbAccessToken', window.localStorage['fb_token']);
+  }
+})
+/*.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+  // We need to setup some parameters for http requests
+  // These three lines are all you need for CORS support
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.withCredentials = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+})*/

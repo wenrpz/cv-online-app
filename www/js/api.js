@@ -1,11 +1,12 @@
-angular.module('cvonlineapp').factory('Api',function($http, $q, Constants){
+angular.module('cvonlineapp').factory('Api',function($http, $q, Constants, $localStorage){
   return {
     post: function(endpoint, params) {
       var deferred = $q.defer();
       $http({
         url: Constants.API_URL + endpoint,
         method: "POST",
-        data: params
+        data: params,
+        headers : {'X-Session-Id': $localStorage.get('X-Session-Id')}
       })
       .then(deferred.resolve, deferred.reject);
       return deferred.promise;
@@ -16,7 +17,8 @@ angular.module('cvonlineapp').factory('Api',function($http, $q, Constants){
       $http({
         url: Constants.API_URL + endpoint,
         method: "PUT",
-        data: params
+        data: params,
+        headers : {'X-Session-Id': $localStorage.get('X-Session-Id')}
       })
       .then(deferred.resolve, deferred.reject);
       return deferred.promise;
@@ -27,7 +29,8 @@ angular.module('cvonlineapp').factory('Api',function($http, $q, Constants){
        $http({
         url: Constants.API_URL + endpoint,
         method: "DELETE",
-        data: params
+        data: params,
+        headers : {'X-Session-Id': $localStorage.get('X-Session-Id')}
       })
       .then(deferred.resolve, deferred.reject);
       return deferred.promise;
