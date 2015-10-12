@@ -20,14 +20,23 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
     }
   })
   .state('app.profile', {
-      url: '/profile',
-      views: {
-        'app-profile': {
-          templateUrl: 'templates/profile.html',
-          controller: 'ProfileController'
-        }
+    url: '/profile',
+    views: {
+      'app-profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileController'
       }
-    })  
+    }
+  })  
+  .state('app.editProfile', {
+    url: '/profile/edit',
+    views: {
+      'app-profile': {
+        templateUrl: 'templates/edit-profile.html',
+        controller: 'ProfileController'
+      }
+    }
+  })
   .state('app.change-template', {
       url: '/change-template',
       views: {
