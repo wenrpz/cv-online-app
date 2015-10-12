@@ -12,7 +12,10 @@
 .profile-image img{
   width: 50%;
 }
-.delete-account{
+/*.delete-account, .logout{
   margin-top: -10px;
   margin-left: 102px;
 }
+.logout{
+
+}*/

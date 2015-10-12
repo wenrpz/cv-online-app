@@ -1,6 +1,7 @@
 <ion-view title="Mi Perfil">
   <ion-nav-buttons side="right">
     <a class="button button-light edit-profile" ui-sref="app.editProfile">Editar</a>
+
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="profile-image text-center">
@@ -21,10 +22,10 @@
         <strong>Website:</strong> {{profile.website}}
       </div>
     </div>
-
-    <button class="button button-assertive delete-account" ng-click="removeAccount()">Eliminar cuenta</button>
-
-          <a href="#" class="button button-block button-positive " ng-click="logout()">Logout</a>
-
+    <div class="bottom-profile-buttons text-center">
+      <button class="button button-assertive delete-account" ng-click="removeAccount()">Eliminar cuenta</button>
+      <button class="button button-assertive logout" ng-click="logout()">Logout<i class="icon ion-log-out"></i>
+      </button>
+    </div>
   </ion-content>
 </ion-view>
