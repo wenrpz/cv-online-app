@@ -11,6 +11,9 @@ angular.module('cvonlineapp').factory('$localStorage', ['$window', function($win
     },
     getObject: function(key) {
       return JSON.parse($window.localStorage[key] || '{}');
+    },
+    remove :function(key){
+      delete $window.localStorage[key];
     }
   }
 }]);

@@ -7,6 +7,7 @@ angular.module('cvonlineapp').controller('ProfileController',function($scope, $s
       params: {fields: 'id,name,email,picture'}
     }).then(
       function (user) {
+        console.log(User.getProfile());
         $scope.profile.facebook = user;
       },
       function (error) {
@@ -32,8 +33,9 @@ angular.module('cvonlineapp').controller('ProfileController',function($scope, $s
   }
 
   $scope.save = function() {
-    User.update($scope.user, function(response) {
+    User.update($scope.profile, function(response) {
       User.setUserData($scope.profile);
+      $state.go('app.profile');
       console.log(response, $scope.profile);
     },function(error) {
       console.log(error);

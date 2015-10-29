@@ -6,7 +6,7 @@ angular.module('cvonlineapp').controller('LoginController',
         if (response.status == 'connected') {
           User.login(response.authResponse.accessToken, function(response){
             console.log('CONTR SUCCESS', response);
-            $state.go('app.cv');
+            $state.go('app.profile');
           }, function(response){
             console.log('CONTR ERROR', response);
           });

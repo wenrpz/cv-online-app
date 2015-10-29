@@ -52,14 +52,15 @@ angular.module('cvonlineapp').service('User',
       $localStorage.set('fb_token', data.fb_token)
     }
 
+
     this.setToken = function(token){
       $localStorage.set('X-Session-Id',token);
       Api.setDefaultHeader('X-Session-Id', token);
     }
     
     this.destroyToken = function(){
-      $localStorage.set('X-Session-Id', null);
-      $localStorage.set('userData', null);
+      $localStorage.remove('X-Session-Id');
+      $localStorage.remove('userData');
       Api.removeDefaultHeader['X-Session-Id'];
     }
     
