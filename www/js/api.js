@@ -11,6 +11,17 @@ angular.module('cvonlineapp').factory('Api',function($http, $q, Constants, $loca
       .then(deferred.resolve, deferred.reject);
       return deferred.promise;
     },
+    get: function(endpoint, params) {
+      var deferred = $q.defer();
+      $http({
+        url: Constants.API_URL + endpoint,
+        method: "GET",
+        data: params,
+        headers : {'X-Session-Id': $localStorage.get('X-Session-Id')}
+      })
+      .then(deferred.resolve, deferred.reject);
+      return deferred.promise;
+    },
     put: function(endpoint, params) {
       console.log($http.defaults.headers.common);
       var deferred = $q.defer();

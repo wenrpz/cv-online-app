@@ -19,6 +19,15 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
       }
     }
   })
+  .state('app.createCv',{
+    url: '/cv/create',
+    views:{
+      'app-cv': {
+        templateUrl: 'templates/cv-create.html',
+        controller: 'CvController'
+      }
+    }
+  })
   .state('app.profile', {
     url: '/profile',
     views: {
@@ -46,5 +55,5 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
         }
       }
     });
-  $urlRouterProvider.otherwise('login');
+  $urlRouterProvider.otherwise('app.cv');
 });

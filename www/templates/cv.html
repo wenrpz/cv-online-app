@@ -1,8 +1,18 @@
 <ion-view title="Curriculum Vitae">
   <ion-nav-buttons side="right">
-    <button class="button button-stable" ng-click="doSomething()">Editar</button>
-  </ion-nav-buttons>
-  <ion-content>
-    Test
-  </ion-content>
+    <a ng-show="!hasCv()" ui-sref="app.createCv" class="button button-light no-animation">
+      Create
+    </a>
+    <a ng-show="hasCv()" ui-sref="app.editCv" class="button button-light no-animation">
+      Edit
+    </a>
+  </ion-nav-buttons> 
+  <ion-content ng-init="view()" class="cv-iframe-content">
+    <iframe ng-show="hasCv()" id="cvView" class="cv-iframe"
+      style="overflow:hidden; width: 100%; height: 100%;" height="100%" width="100%"
+    ></iframe>
+    <div ng-show="!hasCv()">
+      NO CV :(
+    </div>
+  </ion-content>   
 </ion-view>

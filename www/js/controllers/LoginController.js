@@ -15,9 +15,9 @@ angular.module('cvonlineapp').controller('LoginController',
         }
       });
     }
-
+    
     if (User.isLoggedIn()){
-      $state.go('app.profile');
+      $state.go('app.cv');
     }
   }]
 );

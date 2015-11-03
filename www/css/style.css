@@ -19,3 +19,47 @@
 .logout{
 
 }*/
+
+/**
+ * CV form
+ */
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.wizard-content .scroll {
+  padding-bottom: 40px;
+}
+.ng-dirty input.ng-invalid,
+.ng-dirty select.ng-invalid,
+.ng-dirty textarea.ng-invalid {
+  border: 1px solid red;
+}
+
+/**
+ * CV view
+ */
+.cv-iframe-content > .scroll {
+  height: 100%;
+}
+
+/**
+ * Change template
+ */
+.templates-container > a {
+  height: 200px;
+  display: block;
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.templates-container > a .apply-template {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.templates-container > a > img {
+  width: 100%;
+}
