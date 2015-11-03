@@ -1,32 +1,17 @@
-angular.module('cvonlineapp').controller('CvController', function($scope, User, Cv){
-  $scope.personalInfo = User.getProfile();
-  $scope.data = {
-    workExperiences: [],
-    certificates: [],
-    education: [],
-    interests: [],
-    references: []
-  };
+angular.module('cvonlineapp').controller('CvController', function($scope, $state, User, Cv){
+  
   $scope.cvExists = null;
+
 
   $scope.hasCv = function() {
     return $scope.cvExists === true;
   }
 
-  $scope.addRow = function(obj) {
-    obj.push({});
-  }
-
-  $scope.removeRow = function(obj, index) {
-    obj.splice(index, 1);
-  }
-
-  $scope.save = function() {
-    console.log('all data', $scope.data);
-  }
   $scope.view = function(){
     Cv.getCv(function(cvData){
+      console.log(cvData);
       Cv.getTemplateData(function(templateData){
+        console.log(templateData);
         $scope.cvExists = true;
         var text = '<html>';
         text += '<head><style>' + templateData.css + '</style></head>';

@@ -1,16 +1,11 @@
 angular.module('cvonlineapp').service('Cv',
   ['Api','$localStorage',function(Api, $localStorage){
-    this.createCv = function(callback, callbackError){}
-    this.seeCv = function(callback, callbackError){}
-    this.editCv = function(callback, callbackError){}
-    this.changeCv = function(callback, callbackError){}
-
     this.getCv = function(successCb, errorCb){
-      if(this.getDefaultTemplate()) {
-        successCb({});
-      } else {
-        errorCb({});
-      }
+      Api.get('/cv/my').then(function(response) {
+        successCb(response.data);
+      }, function(err) {
+        errorCb(err);
+      });
     }
     this.getTemplates = function(successCb, errorCb){
       Api.get('/template/list').then(function(response){
@@ -19,6 +14,14 @@ angular.module('cvonlineapp').service('Cv',
       },function(error){
         errorCb(error);
       })
+    }
+
+    this.save = function(data, successCb, errorCb) {
+      Api.post('/cv/create', data).then(function(response) {
+        successCb(response.data);
+      }, function(err) {
+        errorCb(err);
+      });
     }
 
     this.setDefaultTemplate = function(id){

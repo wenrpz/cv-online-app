@@ -20,11 +20,11 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
     }
   })
   .state('app.createCv',{
-    url: '/cv/create',
+    url: '/create',
     views:{
       'app-cv': {
         templateUrl: 'templates/cv-create.html',
-        controller: 'CvController'
+        controller: 'CreateCvController'
       }
     }
   })

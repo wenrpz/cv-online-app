@@ -27,18 +27,18 @@
         </div>
         <h4 class="form-title padding">Experiencia laboral</h4>
         <ng-form name="workExperiencesForm">
-          <div class="card" ng-repeat="experience in data.workExperiences">
+          <div class="card" ng-repeat="experience in data.work_experiences">
             <div class="item item-divider">
               Experiencia {{$index + 1}}
-              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.workExperiences, $index)">
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.work_experiences, $index)">
                 <i class="icon ion-android-remove-circle"></i>
               </button>
             </div>
             <div class="item item-text-wrap">
               <div class="list">
                 <label class="item item-input item-stacked-label">
-                  <span class="input-label">Título</span>
-                  <input required type="text" ng-model="experience.title">
+                  <span class="input-label">Posición</span>
+                  <input required type="text" ng-model="experience.position">
                 </label>
                 <label class="item item-input item-stacked-label">
                   <span class="input-label">Fechas</span>
@@ -57,13 +57,13 @@
                 </label>
                 <label class="item item-input item-stacked-label">
                   <span class="input-label">Otra información</span>
-                  <textarea required ng-model="experience.other_info"></textarea>
+                  <textarea required ng-model="experience.bullet_points.text"></textarea>
                 </label>
               </div>
             </div>
           </div>
           <div class="padding">
-            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.workExperiences)">
+            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.work_experiences)">
               Agregar experiencia
             </button>          
           </div>
@@ -99,18 +99,18 @@
       <ion-wizard-content class="has-header wizard-content">
         <h4 class="form-title">Educación</h4>
         <ng-form name="educationForm">
-          <div class="card" ng-repeat="education in data.education">
+          <div class="card" ng-repeat="education in data.educations">
             <div class="item item-divider">
               Educación {{$index + 1}}
-              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.education, $index)">
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.educations, $index)">
                 <i class="icon ion-android-remove-circle"></i>
               </button>
             </div>
             <div class="item item-text-wrap">
               <div class="list">
                 <label class="item item-input item-stacked-label">
-                  <span class="input-label">Curso</span>
-                  <input required type="text" ng-model="education.course">
+                  <span class="input-label">Grado</span>
+                  <input required type="text" ng-model="education.degree">
                 </label>
                 <label class="item item-input item-stacked-label">
                   <span class="input-label">Fechas</span>
@@ -127,15 +127,11 @@
                   <span class="input-label">Nombre del instituto</span>
                   <input required type="text" ng-model="education.school">
                 </label>
-                <label class="item item-input item-stacked-label">
-                  <span class="input-label">Otra información</span>
-                  <textarea required ng-model="education.other_info"></textarea>
-                </label>
               </div>
             </div>
           </div>
           <div class="padding">
-            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.education)">
+            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.educations)">
               Agregar educación
             </button>          
           </div>
