@@ -4,6 +4,7 @@ angular.module('cvonlineapp').controller('ChangeTemplateController',['$scope','$
 
   $scope.listTemplate = function(){    
     Cv.getTemplates(function(response){
+      console.log(response.templates);
       $scope.templates = response.templates;    
     })
   }

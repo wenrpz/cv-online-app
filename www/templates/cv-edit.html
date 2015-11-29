@@ -1,0 +1,190 @@
+<ion-view title="Curriculum Vitae">
+  <ion-nav-buttons side="left">
+    <button class="button button-light no-animation" ion-wizard-previous>
+      Back
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+      <button class="button button-light no-animation" ion-wizard-next>
+          Next
+      </button>
+      <button class="button button-light no-animation" ion-wizard-start="save()">
+          Create
+      </button>
+  </ion-nav-buttons>   
+  <ion-slide-box ion-wizard>
+    <!-- Work experience -->
+    <ion-slide ion-wizard-step next-condition="workExperiencesForm.$valid">
+      <ion-wizard-content class="has-header wizard-content">
+        <div class="card list">
+          <div class="item item-thumbnail-left">
+            <img ng-src="http://graph.facebook.com/{{personalInfo.fb_id}}/picture?width=270&height=270"/>
+            <h2>{{personalInfo.name}} {{personalInfo.lastname}}</h2>
+            <p>{{personalInfo.email}}</p>
+            <p>{{personalInfo.telephone}}</p>
+          </div>
+
+        </div>
+        <h4 class="form-title padding">Experiencia laboral</h4>
+        <ng-form name="workExperiencesForm">
+          <div class="card" ng-repeat="experience in data.work_experiences">
+            <div class="item item-divider">
+              Experiencia {{$index + 1}}
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.work_experiences, $index)">
+                <i class="icon ion-android-remove-circle"></i>
+              </button>
+            </div>
+            <div class="item item-text-wrap">
+              <div class="list">
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Posición</span>
+                  <input required type="text" ng-model="experience.position">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Fechas</span>
+                  <div class="row">
+                    <div class="col">
+                      <input required type="date" ng-model="experience.start_date">
+                    </div>
+                    <div class="col">
+                      <input required type="date" ng-model="experience.end_date">
+                    </div>
+                  </div>
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Nombre de la empresa</span>
+                  <input required type="text" ng-model="experience.company">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Otra información</span>
+                  <textarea required ng-model="experience.bullet_points.text"></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.work_experiences)">
+              Agregar experiencia
+            </button>          
+          </div>
+        </ng-form>
+      </ion-wizard-content>
+    </ion-slide>
+    <!-- Certifications -->
+    <ion-slide ion-wizard-step next-condition="certificatesForm.$valid">
+      <ion-wizard-content class="has-header wizard-content">
+        <h4 class="form-title">Certificaciones</h4>
+        <ng-form name="certificatesForm">
+          <div class="card" ng-repeat="certificate in data.certificates">
+            <div class="item item-divider">
+              Certificación {{$index + 1}}
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.certificates, $index)">
+                <i class="icon ion-android-remove-circle"></i>
+              </button>
+            </div>
+            <div class="item item-text-wrap">
+              <textarea required ng-model="certificate.data"></textarea>
+            </div>
+          </div>
+        </ng-form>
+        <div class="padding">
+          <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.certificates)">
+            Agregar certificado
+          </button>          
+        </div>
+      </ion-wizard-content>
+    </ion-slide>
+    <!-- Education -->
+    <ion-slide ion-wizard-step next-condition="educationForm.$valid">
+      <ion-wizard-content class="has-header wizard-content">
+        <h4 class="form-title">Educación</h4>
+        <ng-form name="educationForm">
+          <div class="card" ng-repeat="education in data.educations">
+            <div class="item item-divider">
+              Educación {{$index + 1}}
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.educations, $index)">
+                <i class="icon ion-android-remove-circle"></i>
+              </button>
+            </div>
+            <div class="item item-text-wrap">
+              <div class="list">
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Grado</span>
+                  <input required type="text" ng-model="education.degree">
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Fechas</span>
+                  <div class="row">
+                    <div class="col">
+                      <input required type="date" ng-model="education.start_date">
+                    </div>
+                    <div class="col">
+                      <input required type="date" ng-model="education.end_date">
+                    </div>
+                  </div>
+                </label>
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Nombre del instituto</span>
+                  <input required type="text" ng-model="education.school">
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="padding">
+            <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.educations)">
+              Agregar educación
+            </button>          
+          </div>
+        </ng-form>
+      </ion-wizard-content>
+    </ion-slide>
+    <!-- Interests -->
+    <ion-slide ion-wizard-step next-condition="interestsForm.$valid">
+      <ion-wizard-content class="has-header wizard-content">
+        <h4 class="form-title">Intereses</h4>
+        <ng-form name="interestsForm">
+          <div class="card" ng-repeat="interest in data.interests">
+            <div class="item item-divider">
+              Interés {{$index + 1}}
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.interests, $index)">
+                <i class="icon ion-android-remove-circle"></i>
+              </button>
+            </div>
+            <div class="item item-text-wrap">
+              <textarea required ng-model="interest.data"></textarea>
+            </div>
+          </div>
+        </ng-form>
+        <div class="padding">
+          <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.interests)">
+            Agregar interés
+          </button>          
+        </div>
+      </ion-wizard-content>
+    </ion-slide>
+    <!-- References -->
+    <ion-slide ion-wizard-step next-condition="referencesForm.$valid">
+      <ion-wizard-content class="has-header wizard-content">
+        <h4 class="form-title">Referencias</h4>
+        <ng-form name="referencesForm">
+          <div class="card" ng-repeat="reference in data.references">
+            <div class="item item-divider">
+              Referencia {{$index + 1}}
+              <button class="button button-assertive button-small pull-right" ng-click="removeRow(data.references, $index)">
+                <i class="icon ion-android-remove-circle"></i>
+              </button>
+            </div>
+            <div class="item item-text-wrap">
+              <textarea required ng-model="reference.data"></textarea>
+            </div>
+          </div>
+        </ng-form>
+        <div class="padding">
+          <button class="button button-block button-balanced icon-left ion-plus-circled" ng-click="addRow(data.references)">
+            Agregar referencia
+          </button>          
+        </div>
+      </ion-wizard-content>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>

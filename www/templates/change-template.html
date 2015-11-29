@@ -1,14 +1,15 @@
 <ion-view title="Cambiar tema">
   <ion-content>
     <div class="templates-container">
-      <a href="#" ng-repeat="template in templates">
-        <img src="http://placehold.it/200" alt="">
+      <div class="template card" href="#" ng-repeat="template in templates">
+        <strong class="template-name">{{template.name}}</strong>
+        <img src="http://placehold.it/200x100" alt="">
         <button class="apply-template button button-balanced" 
           ng-click="selectTemplate(template.id)" 
           ng-class="{'button-outline': defaultTemplateId!=template.id }">
           <i class="icon ion-checkmark-circled"></i>
         </button>
-      </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>
