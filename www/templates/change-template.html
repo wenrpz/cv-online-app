@@ -1,9 +1,9 @@
 <ion-view title="Cambiar tema">
   <ion-content>
     <div class="templates-container">
-      <div class="template card" href="#" ng-repeat="template in templates">
+      <div class="template card" href="#" ng-repeat="template in templates" ng-if="!template.is_disabled">
         <strong class="template-name">{{template.name}}</strong>
-        <img src="http://placehold.it/200x100" alt="">
+        <img ng-src="http://api.cvonline.aliensoft.net/{{template.preview_image_url}}" alt="">
         <button class="apply-template button button-balanced" 
           ng-click="selectTemplate(template.id)" 
           ng-class="{'button-outline': defaultTemplateId!=template.id }">
