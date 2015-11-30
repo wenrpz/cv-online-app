@@ -8,11 +8,18 @@
     </a>
   </ion-nav-buttons> 
   <ion-content ng-init="view()" class="cv-iframe-content">
-    <iframe ng-show="hasCv()" id="cvView" class="cv-iframe"
+    <iframe ng-show="hasCv() && !loading" id="cvView" class="cv-iframe"
       style="overflow:hidden; width: 100%; height: 100%;" height="100%" width="100%"
     ></iframe>
-    <div ng-show="!hasCv()">
-      NO CV :(
+    <div ng-show="!hasCv() && !loading" class="padding">
+      <div class="without-cv">
+        <img src="http://www.beevoz.com/wp-content/uploads/2013/10/11275856-confundido-emoticon.jpg">
+         <h3 class="text-center">No has creado un CV todavia</h3>
+         <a ui-sref="app.createCv" class="button button-block button-balanced button-outline">Crea uno </a>
+      </div>
+    </div>
+    <div class="loading" ng-show="loading">
+      <ion-spinner icon="lines"></ion-spinner>
     </div>
   </ion-content>   
 </ion-view>

@@ -12,6 +12,7 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
   })
   .state('app.cv',{
     url: '/cv',
+    cache: false,
     views:{
       'app-cv': {
         templateUrl: 'templates/cv.html',
@@ -25,6 +26,15 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
       'app-cv': {
         templateUrl: 'templates/cv-create.html',
         controller: 'CreateCvController'
+      }
+    }
+  })
+  .state('app.editCv',{
+    url: '/edit',
+    views:{
+      'app-cv': {
+        templateUrl: 'templates/cv-edit.html',
+        controller: 'EditCvController'
       }
     }
   })
@@ -47,13 +57,13 @@ angular.module('cvonlineapp').config(function($stateProvider,$urlRouterProvider)
     }
   })
   .state('app.change-template', {
-      url: '/change-template',
-      views: {
-        'app-change-template': {
-          templateUrl: 'templates/change-template.html',
-          controller: 'ChangeTemplateController'
-        }
+    url: '/change-template',
+    views: {
+      'app-change-template': {
+        templateUrl: 'templates/change-template.html',
+        controller: 'ChangeTemplateController'
       }
-    });
-  $urlRouterProvider.otherwise('app.cv');
+    }
+  });
+  $urlRouterProvider.otherwise('/login');
 });

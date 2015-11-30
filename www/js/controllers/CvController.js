@@ -1,6 +1,7 @@
 angular.module('cvonlineapp').controller('CvController', function($scope, $state, User, Cv){
   
   $scope.cvExists = null;
+  $scope.loading = true;
 
 
   $scope.hasCv = function() {
@@ -18,14 +19,17 @@ angular.module('cvonlineapp').controller('CvController', function($scope, $state
         text += '<body>' + templateData.html + '</body>';
         text += '</html>';
 
-        var html = ejs.render(text, cvData);
+        var html = ejs.render(text, {cv: cvData, user: User.getProfile()});
 
         var iframe= document.getElementById('cvView');
         var doc= iframe.contentWindow.document;
         doc.open();
         doc.write(html);
         doc.close();
-      });  
+        $scope.loading = false;
+      }, function(err) {
+        console.log(err);
+      });
     }, function() {
       $scope.cvExists = false;
     })
