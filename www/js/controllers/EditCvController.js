@@ -1,32 +1,70 @@
-angular.module('cvonlineapp').controller('EditCvController', function($scope, $state, User,Cv){
-  console.log('entre');
+angular.module('cvonlineapp').controller('EditCvController', function($scope, $state, User,Cv, CvForm){
   $scope.personalInfo = User.getProfile();
-  $scope.EditableCvInfo = Cv.getCvEditableInfo();
-  console.log('data de mi cv para editar: ',$scope.EditableCvInfo);
-/*   $scope.view = function(){
-    Cv.getCv(function(cvData){
-      console.log(cvData);
-      Cv.getTemplateData(function(templateData){
-        console.log(templateData);
-        $scope.cvExists = true;
-        var text = '<html>';
-        text += '<head><style>' + templateData.css + '</style></head>';
-        text += '<body>' + templateData.html + '</body>';
-        text += '</html>';
+  var editableInfo = {};
 
-        var html = ejs.render(text, cvData);
+  $scope.data = {
+    work_experiences: [],
+    educations: [],
+    certificates: [],
+    interests: [],
+    references: []
+  };
 
-        var iframe= document.getElementById('cvView');
-        var doc= iframe.contentWindow.document;
-        doc.open();
-        doc.write(html);
-        doc.close();
-      });  
-    }, function() {
-      $scope.cvExists = false;
-    })
-    
-  }*/
- /* $scope.getCv =  Cv.getCv();
-  console.log('data del cv', $scope.getCv);*/
+  $scope.addRow = function(obj) {
+    CvForm.addRow(obj);
+  }
+
+  $scope.removeRow = function(obj, index) {
+    CvForm.removeRow(obj);
+  }
+
+  $scope.save = function() {
+    console.log('edit', $scope.data);
+    CvForm.save($scope.data).then(function(response) {
+      if (response == 'OK') {
+        $state.go('app.cv');
+      }
+    }, function(error) {
+      console.error(error);
+    });
+  }
+
+  function getDateValue (datestr) {
+    return new Date(datestr);
+  }
+
+  function getRepeater(data) {
+    var arr = [];
+    for(var i in data) {
+      data[i].start_date = getDateValue(data[i].start_date);
+      data[i].end_date = getDateValue(data[i].end_date);
+      arr.push(data[i]);
+    }
+    return arr;
+  }
+
+  function transformData() {
+    $scope.data.id = editableInfo.id;
+    $scope.data.work_experiences = getRepeater(editableInfo.work_experiences);
+    $scope.data.educations = getRepeater(editableInfo.educations);
+    for(var i in editableInfo.fields) {
+      var data = {data: editableInfo.fields[i].value};
+      switch(editableInfo.fields[i].name) {
+        case 'certificate':
+          $scope.data.certificates.push(data);
+          break;
+        case 'interest':
+          $scope.data.interests.push(data);
+          break;
+        case 'reference':
+          $scope.data.references.push(data);
+          break;
+      }
+    }
+  }
+
+  Cv.getCvInfo().then(function(response) {
+    editableInfo = response;
+    transformData();
+  });
 })

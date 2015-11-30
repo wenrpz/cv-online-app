@@ -2,23 +2,24 @@ angular.module('cvonlineapp').service('Cv',
   ['Api','$localStorage',function(Api, $localStorage){
     this.getCv = function(successCb, errorCb){
       var self = this;
-      Api.get('/cv/my').then(function(response) {
-        self.setCvEditableInfo(response.data);
-        successCb(response.data);
+      this.getCvInfo().then(function(response) {
+        self.setCvEditableInfo(response);
+        successCb(response);
       }, function(err) {
         errorCb(err);
       });
     }
 
     this.setCvEditableInfo = function(cvData){
-      if (!$localStorage.get('default-template')) {
-        $localStorage.set('default-template', cvData.template_id || 1);
+      if (!this.getDefaultTemplate()) {
+        this.setDefaultTemplate(cvData.template_id || 1);
       }
-      $localStorage.setObject('cv-editable-info', cvData);
     }
 
-    this.getCvEditableInfo = function(){
-      $localStorage.get('cv-editable-info');
+    this.getCvInfo = function(){
+      return Api.get('/cv/my').then(function(response) {
+        return response.data;
+      });
     }  
     
     this.getTemplates = function(successCb, errorCb){
@@ -32,6 +33,14 @@ angular.module('cvonlineapp').service('Cv',
 
     this.save = function(data, successCb, errorCb) {
       Api.post('/cv/create', data).then(function(response) {
+        successCb(response.data);
+      }, function(err) {
+        errorCb(err);
+      });
+    }
+
+    this.update = function(data, successCb, errorCb) {
+      Api.post('/cv/' + data.id + '/edit', data).then(function(response) {
         successCb(response.data);
       }, function(err) {
         errorCb(err);
