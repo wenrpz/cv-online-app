@@ -1,12 +1,10 @@
 <ion-view title="Mi Perfil" cache-view="false">
   <ion-nav-buttons side="right">
     <a class="button button-light edit-profile" ui-sref="app.editProfile">Editar</a>
-
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="profile-image text-center">
-      <!-- <img src="img/user-placeholder.png"> -->
-      <img src="http://graph.facebook.com/{{profile.facebook.id}}/picture?width=270&height=270"/>
+      <img ng-src="{{photo}}" />
     </div>
     <div class="list list-inset profile-info text-center">
       <div class="item">

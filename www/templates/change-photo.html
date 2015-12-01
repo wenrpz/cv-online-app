@@ -4,11 +4,8 @@
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="profile-image text-center">
-      <img ng-src="{{photo}}"/>
-    </div>
-    <div class="button-bar">
-      <button class="button" ng-click="changePhoto('camera')">Camara</button>
-      <button class="button" ng-click="changePhoto('gallery')">Galeria</button>
+      <!-- <img src="img/user-placeholder.png"> -->
+      <img src="http://graph.facebook.com/{{profile.facebook.id}}/picture?width=270&height=270"/>
     </div>
     <div class="list list-inset">
       <label class="item item-input">
@@ -25,7 +22,7 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Telefono</span>
-        <input type="text" ng-model="profile.telephone">
+        <input type="number" ng-model="profile.telephone">
       </label>
       <label class="item item-input">
         <span class="input-label">Website</span>

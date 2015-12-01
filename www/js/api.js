@@ -11,6 +11,33 @@ angular.module('cvonlineapp').factory('Api',function($http, $q, Constants, $loca
       .then(deferred.resolve, deferred.reject);
       return deferred.promise;
     },
+    upload: function(endpoint, params) {
+      var deferred = $q.defer();
+      
+      var fd = new FormData();
+      fd.append("profilePicture", params);
+
+      $http.post(Constants.API_URL + endpoint, fd, {
+          headers : {
+            'X-Session-Id': $localStorage.get('X-Session-Id'),
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        })
+      .then(deferred.resolve, deferred.reject);
+      // $http({
+      //   transformRequest: angular.identity,
+      //   url: Constants.API_URL + endpoint,
+      //   method: "POST",
+      //   data: params,
+      //   headers : {
+      //     'X-Session-Id': $localStorage.get('X-Session-Id'),
+      //     'Content-Type': undefined
+      //   }
+      // })
+      // .then(deferred.resolve, deferred.reject);
+      return deferred.promise;
+    },
     get: function(endpoint, params) {
       var deferred = $q.defer();
       $http({

@@ -1,5 +1,4 @@
-angular.module('cvonlineapp').service('User', 
-  ['Api','$localStorage', function(Api, $localStorage){
+angular.module('cvonlineapp').service('User', function(Api, $localStorage, $cordovaFileTransfer){
     this.auth = {};
 
     this.login = function(token, successCb, errorCb){
@@ -52,6 +51,13 @@ angular.module('cvonlineapp').service('User',
       $localStorage.set('fb_token', data.fb_token)
     }
 
+    this.hasProfilePicture = function() {
+      return !!$localStorage.get('profile-picture');
+    }
+
+    this.getProfilePicture = function(){
+      return $localStorage.get('profile-picture');
+    }
 
     this.setToken = function(token){
       $localStorage.set('X-Session-Id',token);
@@ -70,10 +76,18 @@ angular.module('cvonlineapp').service('User',
     this.setUserData = function(profileInfo){
       $localStorage.setObject('userData', profileInfo);
     }
+
+    this.changePhoto = function(imageData) {
+      $localStorage.set('profile-picture', "data:image/jpeg;base64," + imageData);
+      // return Api.upload('/user/changeProfilePicture', imageData).then(function(response) {
+      //   console.log(response);
+      //   return response;
+      // });
+    }
     
     this.logout = function(){
       var self  = this;
       self.destroyToken();
     }
-  }]
+  }
 );
